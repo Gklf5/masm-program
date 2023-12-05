@@ -1,0 +1,49 @@
+.MODEL SMALL
+
+PRINTN MACRO P
+    LEA DX,P
+    MOV AH,09H
+    INT 21H
+ENDM
+
+.DATA
+    BUFFER DB 20,?
+    STRING1 DB 10,13, "ENTER A STRING:$"
+    STRING2 DB 10,13, "YOUR STRING:$"
+
+.CODE
+    MOV AX, @DATA
+    MOV DS, AX
+
+    PRINTN STRING1
+
+    LEA DX, BUFFER
+    MOV AH,0AH
+    INT 21H
+    ; LEA DI,BUFFER
+    ; MOV AH,01H
+
+    ; INPUT:
+    ;   INT 21H
+    ;   MOV [DI],AL
+    ;   CMP AL,13
+    ;   JE OUT1
+    ;   INC DI
+    ;   JMP INPUT
+
+    OUT1:
+      PRINTN STRING2
+      LEA SI,BUFFER+2
+      MOV AH,02H
+    DISPLAY:
+      MOV DL,[SI]
+      CMP DL,13
+      JE OUT2
+      INT 21H
+      INC SI
+      JMP DISPLAY
+
+    OUT2:
+      MOV AH,4CH
+      INT 21H
+      END

@@ -1,0 +1,37 @@
+.MODEL SMALL
+
+PRINTC MACRO P
+    MOV DL, P
+    MOV AH, 02H
+    INT 21H
+ENDM
+
+.DATA 
+    STRING DB 'HELLO$'
+.CODE 
+    MOV AX, @DATA
+    MOV DS, AX
+    LEA SI, STRING
+    MOV CX, 0
+
+SCAN:
+    MOV AL, [SI]
+    CMP AL, '$'
+    JZ REVERSE
+    INC SI
+    INC CX
+    JMP SCAN
+
+REVERSE:
+    DEC SI
+
+PRINT_LOOP:
+    MOV AL, [SI]
+    PRINTC AL  
+    DEC SI
+    LOOP PRINT_LOOP
+
+EXIT:
+    MOV AH, 4CH
+    INT 21H
+    END
