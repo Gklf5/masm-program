@@ -32,31 +32,3 @@ EXIT:
     INT 21H            ; Call DOS to terminate
 
 END
-
-; .MODEL SMALL
-; .DATA 
-; ARRAY DB 1,2,6,3,7,4
-; STRING DB 'LARGEST IS:$'
-
-; .CODE 
-; LEA SI,ARRAY
-; MOV BL,[SI]
-; MOV CX,4
-
-; LOOP_BACK:
-; INC SI
-; CMP BL,[SI]
-; JG BIG
-; MOV BL,[SI]
-; BIG:
-; LOOP LOOP_BACK
-; EXIT:
-;         LEA DX,STRING
-;         MOV AH,09H
-;         INT 21H
-;         MOV DL,BL
-;         MOV AH,02H
-;         INT 21H
-;         MOV AH,4CH
-;         INT 21H
-;         END

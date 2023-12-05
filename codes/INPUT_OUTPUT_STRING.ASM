@@ -20,16 +20,6 @@ ENDM
     LEA DX, BUFFER
     MOV AH,0AH
     INT 21H
-    ; LEA DI,BUFFER
-    ; MOV AH,01H
-
-    ; INPUT:
-    ;   INT 21H
-    ;   MOV [DI],AL
-    ;   CMP AL,13
-    ;   JE OUT1
-    ;   INC DI
-    ;   JMP INPUT
 
     OUT1:
       PRINTN STRING2
