@@ -1,3 +1,5 @@
+;FIND SUM OF FRIST TEN EVEN NUMBERS
+
 .MODEL SMALL
 
 PRINTN MACRO P 
@@ -48,9 +50,6 @@ DISPLAY:
     MOV DL, AL      
     MOV AH, 02H    
     INT 21H         
-
-    MOV AH, 4CH
-    INT 21H        
 
 EXIT:
     MOV AH, 4CH
